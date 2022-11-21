@@ -1,0 +1,8 @@
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\bin\Debug\Battleship_Project.exe.config
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\bin\Debug\Battleship_Project.exe
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\bin\Debug\Battleship_Project.pdb
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\obj\Debug\Battleship_Project.csproj.AssemblyReference.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\obj\Debug\Battleship_Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\obj\Debug\Battleship_Project.csproj.CoreCompileInputs.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\obj\Debug\Battleship_Project.exe
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Battleship_Project\Battleship_Project\Battleship_Project\obj\Debug\Battleship_Project.pdb
