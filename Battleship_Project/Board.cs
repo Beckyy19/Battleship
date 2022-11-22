@@ -8,8 +8,8 @@ namespace Battleship_Project
 {
     internal class Board
     {
-        private int[,] strategy_board;
-        private int[,] attack_board;
+        private int[,] strategy_board; //plateau où on place les bateaux
+        private int[,] attack_board; // plateau où on attaque l'adversaire
 
 
         //Constructor
@@ -53,7 +53,7 @@ namespace Battleship_Project
 
         public void ToStringStrategy()
         {
-            Console.WriteLine("  A\tB\tC\tD\tE\tF\tG\tH\tI\tJ"); //Coordonnées
+            Console.WriteLine("\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ"); //Coordonnées
             for (int i = 0; i < this.strategy_board.GetLength(0); i++)
             {
                 Console.Write(i + " ");
@@ -62,14 +62,14 @@ namespace Battleship_Project
                 {
                     if (this.Strategy_board[i, j] == 0)
                     {
-                        Console.BackgroundColor = ConsoleColor.Blue;
-                        Console.Write("| \t");
+                        //Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.Write("\t|");
                     }
                     else
                     {
                         Console.Write(this.strategy_board[i, j] + "\t");
                     }
-                    Console.ResetColor();
+                    //Console.ResetColor();
                 }
                 Console.WriteLine();
             }

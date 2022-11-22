@@ -1,0 +1,63 @@
+			                                             .
+			                           .                 |
+			                           +                 |
+			                  .        |                *+W+-*
+			     .           +y        +W+              . H                 .
+			  .  +y            |I.   y  |               ! H= .           .  ^
+			  !   \     .     |H '. /   |  ___.        .! H  !   +--.--y !  V
+			  !    \     \  +=|H|=='.=+ | |====\   _  '_H_H__H_. H_/=  J !  !
+			. !     \'    VVV_HHH_/__'._H |  E  \_|=|_|========|_|==|____H. ! _______.
+			I-H_I=I=HH_==_|I_IIIII_I_I_=HH|======.I-I-I-=======-I=I=I=I_=H|=H'===I=I/
+			\                                                                      ,
+			 |                                                                    /
+			 .___________________________________________________________________'
+
+
+	
+	======================= RULES OF THE BATTLESHIP GAME OF ALINE & REBECCA ================================================
+
+	Each player's fleet contains 5 differents ships : 
+	-----------------
+	Carrier (5 holes)
+	Battleship (4 holes)
+	Cruiser (3 holes)
+	Submarine (3 holes)
+	Destroyer (2 holes)
+	------------------
+
+	=> SETUP
+
+	You and your opponent sit facing each other and neighter can see the other's ocean grid.
+	Place your fleet of 5 ships on the ocean grid (board size 10x10).
+
+	=> RULES FOR PLACING SHIPS
+	
+	Place each ship in any horizontal or vertical position but not diagonally.
+	Don't place a ship so that any part of it overlaps letters, numbers, the edge of the grid or another ship.
+	Don't change the position of any ships once the game has begun.
+
+	=> GAME PLAY
+
+	You and your opponent will alternate turns, calling out one shot per turn to try to hit each other's ships.
+	On your turn, pick a target hole and call out its location by letter & number.
+	When you call a shot, your opponent must tell you whether your shot is a hit or a miss.
+
+		It's a hit : If you call out a shot location that is occupied by a ship on your opponent's ocean grid, you shot is a hit!
+			     Your opponent tells you which ship you have hit (cruiser, submarine, battleship, etc...).
+			     Record yur hit by placing a red peg on your target grid. Your opponent places a red peg in the corresponding hole of the ship
+			     on his ocean grid.
+
+		It's a miss : If you call out a shot location not occupied by a ship on your opponent's ocean grid, its a miss.
+			      Record you miss by placing a white peg in the corresponding target hole on your target grid, so you will remember this location
+			      and won't call this shot again.
+
+	=> SINKING A SHIP
+
+	Once all the holes in any one ship are filled with red pegs, the ship will sink. The owner of that ship must announce which ship was sunk.
+
+
+
+	=> END OF THE GAME
+
+	If you are the first player to sink your opponent's entire fleet of 5 ships, you win the game.
+
