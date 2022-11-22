@@ -53,26 +53,30 @@ namespace Battleship_Project
 
         public void ToStringStrategy()
         {
-            Console.WriteLine("\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ"); //Coordonnées
+            Console.WriteLine("Strategy board ");
+            Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
+            Console.WriteLine("  -------------------------------");
+
             for (int i = 0; i < this.strategy_board.GetLength(0); i++)
             {
-                Console.Write(i + " ");
+                Console.Write(i + " |");
 
                 for (int j = 0; j < this.strategy_board.GetLength(1); j++)
                 {
                     if (this.Strategy_board[i, j] == 0)
                     {
                         //Console.BackgroundColor = ConsoleColor.Blue;
-                        Console.Write("\t|");
+                        Console.Write("  |");
                     }
                     else
                     {
-                        Console.Write(this.strategy_board[i, j] + "\t");
+                        Console.Write(this.strategy_board[i, j] + "  ");
                     }
                     //Console.ResetColor();
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  -------------------------------");
         }
 
         /* Console.ResetColor();
@@ -81,16 +85,28 @@ namespace Battleship_Project
 
         public void ToStringAttack()
         {
-            Console.WriteLine("\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ"); //Coordonnées
+            Console.WriteLine("Attack board");
+            Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
+            Console.WriteLine("  -------------------------------");
 
             for (int i = 0; i < this.attack_board.GetLength(0); i++)
             {
+                Console.Write(i + " |");
                 for (int j = 0; j < this.attack_board.GetLength(1); j++)
                 {
-                    Console.Write(this.attack_board[i, j] + "\t");
+                    if (this.attack_board[i, j] == 0)
+                    {
+                        //Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.Write("  |");
+                    }
+                    else
+                    {
+                        Console.Write(this.attack_board[i, j] + "  ");
+                    }
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("  -------------------------------");
         }
 
 

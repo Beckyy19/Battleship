@@ -8,5 +8,7 @@ namespace Battleship_Project
 {
     internal class Player
     {
+        
+
     }
 }

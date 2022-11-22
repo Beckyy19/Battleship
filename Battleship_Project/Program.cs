@@ -12,6 +12,11 @@ namespace Battleship_Project
         static void Main(string[] args)
         {
             Rules();
+
+            Board board = new Board();
+            board.ToStringStrategy();
+            Console.WriteLine();
+            board.ToStringAttack();
             Console.ReadKey();
         }
 
