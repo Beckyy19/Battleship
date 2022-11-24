@@ -14,11 +14,34 @@ namespace Battleship_Project
             Rules();
 
             Board board = new Board();
+            Ship ship = new Ship(board);
+            // AI playerAI = new AI(board,ship);
+
+            // mettre beteau avec AI
+            /*playerAI.AIPutShip(ship.Carrier);
+            playerAI.AIPutShip(ship.Cruiser);
+            playerAI.AIPutShip(ship.Submarine);
+            playerAI.AIPutShip(ship.Battleship);
+            playerAI.AIPutShip(ship.Destroyer);
+            //playerAI.PlayingAI()*/
+
+            // mettre bateau avec Player
+
+            Player playeur = new Player(board,ship);
+            playeur.PlayerPutShip();
+
+           
             board.ToStringStrategy();
-            Console.WriteLine();
-            board.ToStringAttack();
+
+
+            //board.ToStringAttack();
+
+            
             Console.ReadKey();
         }
+
+
+        
 
         /// <summary>
         /// File with all the rules in it
