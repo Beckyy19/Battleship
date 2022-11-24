@@ -8,46 +8,60 @@ using System.Windows.Media.Effects;
 
 namespace Battleship_Project
 {
-    internal class Ship
+    public abstract class Ship
     {
-        private int[] carrier;
-        private int[] battleship;
-        private int[] cruiser;
-        private int[] submarine;
-        private int[] destroyer;
+        public string Name { get; set; }
+        public int [] ship { get; set; }
 
+        public bool put { get; set; } // sert pour savoir si le bateau est posé ou pas sur le plateau
+    }
 
-        public Ship(Board board)
+    public class Carrier : Ship
+    {
+        public Carrier()
         {
-    
-            this.carrier = new int[5] { 1, 1, 1, 1, 1 };
-            this.battleship = new int[4] { 1, 1, 1, 1 };
-            this.cruiser = new int[3] { 1, 1, 1 };
-            this.submarine = new int[3] { 1, 1, 1 };
-            this.destroyer = new int[2] { 1, 1 };
+            Name = "Carrier";
+            ship = new int[5] { 1, 1, 1, 1, 1 };
+            put = false;
         }
+    }
 
-        public int[] Carrier
+    public class Cruiser : Ship
+    {
+        public Cruiser()
         {
-            get { return carrier; }
+            Name = "Cruiser";
+            ship = new int[3] { 1, 1, 1 };
+            put= false;
         }
+    }
 
-        public int[] Battleship
+    public class Destroyer : Ship
+    {
+        public Destroyer()
         {
-            get { return battleship; }
+            Name = "Destroyer";
+            ship = new int[2] { 1, 1 };
+            put = false;
         }
-        public int[] Cruiser
-        {
-            get { return cruiser; }
-        }
-        public int[] Submarine
-        {
-            get { return submarine; }
-        }
+    }
 
-        public int[] Destroyer
+    public class Submarine : Ship
+    {
+        public Submarine()
         {
-            get { return destroyer; }
+            Name = "Submarines";
+            ship = new int[3] { 1, 1, 1 };
+            put = false;
+        }
+    }
+    public class Battleship : Ship
+    {
+        public Battleship()
+        {
+            Name = "Battleship";
+            ship = new int[4] { 1, 1, 1, 1 };
+            put = false;
         }
     }
 }
