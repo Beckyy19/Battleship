@@ -13,7 +13,7 @@ namespace Battleship_Project
         public string Name { get; set; }
         public int [] ship { get; set; }
 
-        public bool put { get; set; } // sert pour savoir si le bateau est posé ou pas sur le plateau
+        
     }
 
     public class Carrier : Ship
@@ -22,7 +22,7 @@ namespace Battleship_Project
         {
             Name = "Carrier";
             ship = new int[5] { 1, 1, 1, 1, 1 };
-            put = false;
+           
         }
     }
 
@@ -32,7 +32,7 @@ namespace Battleship_Project
         {
             Name = "Cruiser";
             ship = new int[3] { 1, 1, 1 };
-            put= false;
+            
         }
     }
 
@@ -42,7 +42,7 @@ namespace Battleship_Project
         {
             Name = "Destroyer";
             ship = new int[2] { 1, 1 };
-            put = false;
+            
         }
     }
 
@@ -52,7 +52,7 @@ namespace Battleship_Project
         {
             Name = "Submarines";
             ship = new int[3] { 1, 1, 1 };
-            put = false;
+            
         }
     }
     public class Battleship : Ship
@@ -61,7 +61,6 @@ namespace Battleship_Project
         {
             Name = "Battleship";
             ship = new int[4] { 1, 1, 1, 1 };
-            put = false;
         }
     }
 }

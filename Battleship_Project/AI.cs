@@ -10,11 +10,54 @@ namespace Battleship_Project
     {
 
         private Board board;
+        private string name;
+        private Ship carrier;
+        private Ship cruiser;
+        private Ship submarine;
+        private Ship destroyer;
+        private Ship battleship;
         public AI(Board board)
         {
             this.board = board;
+            this.name = "AI";
+            this.carrier = new Carrier();
+            this.cruiser = new Cruiser();
+            this.submarine = new Submarine();
+            this.destroyer = new Destroyer();
+            this.battleship = new Battleship();
         }
 
+        public string Name { get { return name; } }
+
+        public Board _Board
+        {
+            get { return board; }
+            set { board = value; }
+        }
+        public Ship Carrier
+        {
+            get { return carrier; }
+        }
+
+        public Ship Cruiser
+        {
+            get { return cruiser; }
+        }
+
+        public Ship Submarine
+        {
+            get { return submarine; }
+        }
+
+        public Ship Destroyer
+        {
+            get { return destroyer; }
+        }
+
+        public Ship Battleship
+        {
+            get { return battleship; }
+        }
         public void AIPutShip(int[]shipi)
         {
             int row;
@@ -35,28 +78,39 @@ namespace Battleship_Project
             board.PutShip(row, column, direction, shipi);
         }
 
-        public void PlayingAI()
+        public void AIPlaying(Board enemy)
         {
+            bool attack = false;
             Random random = new Random();
-            int row = random.Next(0, 10);
-            int column = random.Next(0, 10);
+            int row;
+            int column;
 
-            //Console.WriteLine("row : " + row);
-            //Console.WriteLine("column : " + column);
+            do
+            {
+                row = random.Next(0, 10);
+                column = random.Next(0, 10);
 
-            board.Attack_board[row, column] = 2;
+                if (board.Attack_board[row, column] == 0)
+                {
+                    board.Attack_board[row, column] = 2;
+                    attack = true;
+                }
+            } while (!attack); //evite IA d'attaquer un endroit qu'il a déjà attaqué
 
+            char CharColumn = Convert.ToChar(column + 65);
+            Console.WriteLine("AI attack: " +(row+1)+ CharColumn);
+
+
+            // Ici je regarde si IA a touche le bateau du joueur
+            if (enemy.Strategy_board[row, column] == 1)
+            {
+                board.Attack_board[row, column] = 3;
+                enemy.Strategy_board[row, column] = 3;
+                Console.WriteLine("AI hits your ship");
+            }
+            Console.WriteLine("AI misses your ship");
         }
-        /*
-
-        bool resultat = etreCoule(ref couleIA, ref emplacementsBateauxJoueur);
-
-        if (resultat)
-        { Console.WriteLine("Un de vos navires a coulé"); }
-        else
-        { Console.WriteLine("Vos navires sont à l'épreuve des obus !"); }
-
-        */
+        
     }
 
 }

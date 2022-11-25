@@ -51,6 +51,7 @@ namespace Battleship_Project
 
         public void ToStringStrategy()
         {
+            //Sur Strategy board: 1=présence de bateau, 3=bateau qui est touché
             Console.WriteLine("Strategy board ");
             Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
             Console.WriteLine("  -------------------------------");
@@ -69,28 +70,40 @@ namespace Battleship_Project
 
                 for (int j = 0; j < this.strategy_board.GetLength(1); j++)
                 {
-                    if (this.Strategy_board[i, j] == 0)
+                    if (this.strategy_board[i, j] == 0)
                     {
-                        //Console.BackgroundColor = ConsoleColor.Blue;
-                        Console.Write("  |");
+                        Console.Write("  ");
+                    }
+                    else if (this.strategy_board[i,j]==3)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" X");
                     }
                     else
                     {
-                        Console.Write(" "+this.strategy_board[i,j] +"|");
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write(" " + this.strategy_board[i,j]);
                     }
-                    //Console.ResetColor();
+                    
+                    Console.ResetColor();
+                    Console.Write("|");
                 }
+              
                 Console.WriteLine();
             }
             Console.WriteLine("  -------------------------------");
         }
 
         /* Console.ResetColor();
-           Console.BackgroundColor = ConsoleColor.Black;
-           Console.ForegroundColor = ConsoleColor.White;*/
+           */
 
-        public void ToStringAttack()
+        public string ToStringAttack()
         {
+            // Sur le board attack 2 représente Miss, 3 représente Hit
+            bool hit;
+            string H_M= "";
             Console.WriteLine("Attack board");
             Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
             Console.WriteLine("  -------------------------------");
@@ -99,28 +112,46 @@ namespace Battleship_Project
             {
                 if (i + 1 < 10)
                 {
-                    Console.Write(i + 1 + " |");
+                    Console.Write(i + 1 + " |")  ;
                 }
                 else
                 {
                     Console.Write(i + 1 + "|");
                 }
+
                 for (int j = 0; j < this.attack_board.GetLength(1); j++)
                 {
+                   
                     if (this.attack_board[i, j] == 0)
                     {
-                        //Console.BackgroundColor = ConsoleColor.Blue;
-                        Console.Write("  |");
+                        
+                        Console.Write("  ");
+                    }
+                    else if (this.attack_board[i, j] == 2)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write(" M");
+                        H_M = "Miss";
                     }
                     else
                     {
-                        Console.Write(" ¤ ");
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Write(" H");
+                        H_M = "Hit";
                     }
+                    Console.ResetColor();
+                    Console.Write("|");
                 }
                 Console.WriteLine();
             }
             Console.WriteLine("  -------------------------------");
+
+            return H_M;
         }
+
+        
 
         // Methode pour placer un bateau
         public bool PutShip(int row, char charColumn, char direction, int[] ship)
