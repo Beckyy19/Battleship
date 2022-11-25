@@ -47,11 +47,16 @@ namespace Battleship_Project
             Player player = new Player(boardPlayer,name);
 
             //Initialisation AI
-            playerAI.AIPutShip(playerAI.Carrier.ship);
-            playerAI.AIPutShip(playerAI.Cruiser.ship);
-            playerAI.AIPutShip(playerAI.Submarine.ship);
-            playerAI.AIPutShip(playerAI.Destroyer.ship);
-            playerAI.AIPutShip(playerAI.Battleship.ship);
+            string car=playerAI.AIPutShip(playerAI.Carrier.ship);
+            IndexShip(car, playerAI.Carrier);
+            string cru=playerAI.AIPutShip(playerAI.Cruiser.ship);
+            IndexShip(cru, playerAI.Cruiser);
+            string sub=playerAI.AIPutShip(playerAI.Submarine.ship);
+            IndexShip(sub, playerAI.Submarine);
+            string des=playerAI.AIPutShip(playerAI.Destroyer.ship);
+            IndexShip(des, playerAI.Destroyer);
+            string bat=playerAI.AIPutShip(playerAI.Battleship.ship);
+            IndexShip(bat, playerAI.Battleship);
 
             //Initialisation Joueur
             InitializationGamePlayer(boardPlayer, player);
@@ -68,7 +73,7 @@ namespace Battleship_Project
                 {
                     //AI joue
                     playerAI.AIPlaying(boardPlayer);
-                    
+                    CheckShipHit(boardPlayer, player);
                     WinAI = WinOrLose(boardPlayer);
                     if (WinAI)
                     {
@@ -85,6 +90,7 @@ namespace Battleship_Project
                     player.PlayerPlaying(boardAI);
                     boardPlayer.ToStringStrategy();
                     boardPlayer.ToStringAttack();
+                    CheckShipHitAI(boardAI, playerAI);
                     WinPlayer = WinOrLose(boardAI);
                     if (WinPlayer)
                     {
@@ -134,6 +140,7 @@ namespace Battleship_Project
                 player1.PlayerPlaying(board2);
                 board1.ToStringStrategy();
                 board1.ToStringAttack();
+                CheckShipHit(board2, player2);
                 WinPlayer1 = WinOrLose(board2);
                 if (WinPlayer1)
                 {
@@ -148,6 +155,7 @@ namespace Battleship_Project
                     player2.PlayerPlaying(board1);
                     board2.ToStringStrategy();
                     board2.ToStringAttack();
+                    CheckShipHit(board1, player1);
                     WinPlayer2 = WinOrLose(board1);
                     if (WinPlayer2)
                     {
@@ -170,35 +178,148 @@ namespace Battleship_Project
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Put your carrier");
             Console.ResetColor();
-            player.PlayerPutShip(player.Carrier.ship);
+            string car=player.PlayerPutShip(player.Carrier.ship);
+            IndexShip(car, player.Carrier);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Put your cruiser");
             Console.ResetColor();
-            player.PlayerPutShip(player.Cruiser.ship);
+            string cru=player.PlayerPutShip(player.Cruiser.ship);
+            IndexShip(cru, player.Cruiser);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Put your submarine");
             Console.ResetColor();
-            player.PlayerPutShip(player.Submarine.ship);
+            string sub=player.PlayerPutShip(player.Submarine.ship);
+            IndexShip(sub, player.Submarine);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Put your destroyer");
             Console.ResetColor();
-            player.PlayerPutShip(player.Destroyer.ship);
+            string des=player.PlayerPutShip(player.Destroyer.ship);
+            IndexShip(des, player.Destroyer);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("Put your battleship");
             Console.ResetColor();
-            player.PlayerPutShip(player.Battleship.ship);
+            string bat=player.PlayerPutShip(player.Battleship.ship);
+            IndexShip(bat, player.Battleship);
             board.ToStringStrategy();
         }
-        
-        
+
+        static void IndexShip(string shipPlaceInfo, Ship ship)
+        {
+            int row;
+            int column;
+            char direction;
+
+            if (shipPlaceInfo.Length == 4)
+            {
+
+                row = 9;
+                column = Convert.ToInt32(shipPlaceInfo[2] - 65);
+                direction = shipPlaceInfo[3];
+
+
+            }
+            else
+            {
+
+                row = Convert.ToInt32(shipPlaceInfo[0]) - 49;//ASCII string 1 = int 49-48=1, or dans un tableau la ligne 0 correspond à la ligne de mon board 
+                column = Convert.ToInt32(shipPlaceInfo[1] - 65);
+                direction = shipPlaceInfo[2];
+
+            }
+
+            ship.row = row;
+            ship.column = column;
+            ship.direction = direction;
+        }
+
+        static void CheckShipHit(Board boardEnemy, Player enemy)
+        {
+            if (ShipHit(boardEnemy, enemy.Carrier))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Carrier.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Cruiser))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Submarine))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Destroyer))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Battleship))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+            }
+            else { }
+       
+        }
+
+        static void CheckShipHitAI(Board boardEnemy, AI enemy)
+        {
+            if (ShipHit(boardEnemy, enemy.Carrier))
+            {
+                Console.WriteLine(enemy.Name+"'s "+enemy.Carrier.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Cruiser))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Submarine))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Destroyer))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
+            }
+            else if (ShipHit(boardEnemy, enemy.Battleship))
+            {
+                Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+            }
+            else { }
+
+        }
+        static bool ShipHit(Board boardEnemy, Ship shipEnemy)
+        {
+            int row=shipEnemy.row;
+            int column=shipEnemy.column;    
+            char direction=shipEnemy.direction;
+            bool hit = true;
+            if (direction == 'H')
+            {
+                for(int i = 0; i < shipEnemy.length &&hit; i++)
+                {
+                    if (boardEnemy.Strategy_board[row, i] != 3)
+                    {
+                        hit = false;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < shipEnemy.length&&hit; i++)
+                {
+                    if (boardEnemy.Strategy_board[i, column] != 3)
+                    {
+                        hit = false;
+                    }
+                }
+            }
+            
+            return hit;
+        }
         static bool WinOrLose(Board ennemy)
         {
             //Méthode qui regarde si tous les bateaux de l'ennemi sont touchés
@@ -221,29 +342,32 @@ namespace Battleship_Project
         {
             Rules();
 
-            Console.WriteLine("Input a number: \n1: PlayerVsComputer \n2: Play with a friend");
+           /* Console.WriteLine("Input a number: \n1: PlayerVsComputer \n2: Play with a friend");
             int n = Number();
             switch (n)
             {
                 case 1:
-                    PlayWithAI(); //AI N'affiche pas quand ca hit à travailler demain!
+                    PlayWithAI(); 
                     break;
                 case 2:
                     PlayWithPlayer();
                     break;
                 default:
                     break;
-            }
+            }*/
 
             //Test
-            /*Board board1 = new Board();
+            Board board1 = new Board();
             Player player1 = new Player(board1, "ALINE");
 
             Board board2 = new Board();
             Player player2 = new Player(board2, "REB");
 
-            board1.PutShip(1, 'A', 'V', player1.Submarine.ship);
-            board2.PutShip(1, 'A', 'V', player1.Destroyer.ship);
+            string des= player1.PlayerPutShip(player1.Destroyer.ship);
+            IndexShip(des, player1.Destroyer);
+
+            string sub = player2.PlayerPutShip(player2.Destroyer.ship);
+            IndexShip(sub, player2.Destroyer);
 
             bool WinPlayer1 = false;
             bool WinPlayer2 = false;
@@ -254,6 +378,7 @@ namespace Battleship_Project
                 player1.PlayerPlaying(board2);
                 board1.ToStringStrategy();
                 board1.ToStringAttack();
+                CheckShipHit(board2, player2);
                 WinPlayer1 = WinOrLose(board2);
                 if (WinPlayer1)
                 {
@@ -268,6 +393,7 @@ namespace Battleship_Project
                     player2.PlayerPlaying(board1);
                     board2.ToStringStrategy();
                     board2.ToStringAttack();
+                    CheckShipHit(board1, player1);
                     WinPlayer2 = WinOrLose(board1);
                     if (WinPlayer2)
                     {
@@ -276,13 +402,15 @@ namespace Battleship_Project
                 }
                
             }
-            */
+            
            
 
+            
+          
             Console.ReadKey();
         }
 
-
+       
 
 
        

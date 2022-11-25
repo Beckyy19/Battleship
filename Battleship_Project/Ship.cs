@@ -13,6 +13,10 @@ namespace Battleship_Project
         public string Name { get; set; }
         public int [] ship { get; set; }
 
+        public int length { get; set; }
+        public int row { get; set; }
+        public int column { get; set; }
+        public char direction { get; set; }
         
     }
 
@@ -22,7 +26,10 @@ namespace Battleship_Project
         {
             Name = "Carrier";
             ship = new int[5] { 1, 1, 1, 1, 1 };
-           
+            length = 5;
+            row = 0;
+            column = 0;
+            direction = ' ';
         }
     }
 
@@ -32,7 +39,10 @@ namespace Battleship_Project
         {
             Name = "Cruiser";
             ship = new int[3] { 1, 1, 1 };
-            
+            length=3;
+            row = 0;
+            column = 0;
+            direction = ' ';
         }
     }
 
@@ -42,7 +52,10 @@ namespace Battleship_Project
         {
             Name = "Destroyer";
             ship = new int[2] { 1, 1 };
-            
+            length=2;
+            row = 0;
+            column = 0;
+            direction = ' ';
         }
     }
 
@@ -52,7 +65,10 @@ namespace Battleship_Project
         {
             Name = "Submarines";
             ship = new int[3] { 1, 1, 1 };
-            
+            length=3;
+            row = 0;
+            column = 0;
+            direction = ' ';
         }
     }
     public class Battleship : Ship
@@ -61,6 +77,10 @@ namespace Battleship_Project
         {
             Name = "Battleship";
             ship = new int[4] { 1, 1, 1, 1 };
+            length = 4;
+            row = 0;
+            column = 0;
+            direction = ' ';
         }
     }
 }

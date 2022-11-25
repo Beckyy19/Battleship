@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -84,7 +85,7 @@ namespace Battleship_Project
             } while (column != 'A' && column != 'B' && column != 'C' && column != 'D' && column != 'E' && column != 'F' && column != 'G' && column != 'H' && column != 'I' && column != 'J');
             return column;
         }
-        public void PlayerPutShip(int[] shipi)
+        public string PlayerPutShip(int[] shipi)
         {
             int row;
             char column;
@@ -110,6 +111,8 @@ namespace Battleship_Project
 
             } while (!board.PutShip(row, column, direction, shipi));
             board.PutShip(row, column, direction, shipi);
+
+            return ""+row+column+direction;
         }
         public void PlayerPlaying(Board enemy)
         {
@@ -135,12 +138,17 @@ namespace Battleship_Project
             
           
             // Ici je regarde si j'ai touche le bateau de l'ennemie 
-            if (enemy.Strategy_board[row, column] == 1)
+            if (enemy.Strategy_board[row, column] == 1)// touché
             {
                 board.Attack_board[row, column] = 3;
                 enemy.Strategy_board[row, column] = 3;
+                Console.WriteLine(name+" hits your ship");
             }
-
+            else
+            {
+                Console.WriteLine(name+" misses your ship");
+            }
+        
         }
 
     }

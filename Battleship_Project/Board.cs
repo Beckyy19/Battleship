@@ -129,7 +129,7 @@ namespace Battleship_Project
                     }
                     else if (this.attack_board[i, j] == 2)
                     {
-                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.BackgroundColor = ConsoleColor.Cyan;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write(" M");
                         H_M = "Miss";

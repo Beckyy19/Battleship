@@ -58,7 +58,7 @@ namespace Battleship_Project
         {
             get { return battleship; }
         }
-        public void AIPutShip(int[]shipi)
+        public string AIPutShip(int[]shipi)
         {
             int row;
             char column;
@@ -76,6 +76,7 @@ namespace Battleship_Project
             } while (!board.PutShip(row, column, direction, shipi));
 
             board.PutShip(row, column, direction, shipi);
+            return "" + row + column + direction;
         }
 
         public void AIPlaying(Board enemy)
@@ -108,7 +109,10 @@ namespace Battleship_Project
                 enemy.Strategy_board[row, column] = 3;
                 Console.WriteLine("AI hits your ship");
             }
-            Console.WriteLine("AI misses your ship");
+            else
+            {
+                Console.WriteLine("AI misses your ship");
+            }
         }
         
     }
