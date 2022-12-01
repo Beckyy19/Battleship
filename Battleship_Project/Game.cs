@@ -19,7 +19,7 @@ namespace Battleship_Project
         static void Main(string[] args)
         {
 
-           /* bool statement = true;
+            bool statement = true;
 
             while (statement == true)
             {
@@ -70,10 +70,10 @@ namespace Battleship_Project
                         break;
                 }
             }
-          */
+          
 
             //Test
-            Board board1 = new Board();
+            /*Board board1 = new Board();
              Player player1 = new Player(board1, "ALINE");
 
              Board board2 = new Board();
@@ -117,7 +117,7 @@ namespace Battleship_Project
                      }
                  }
 
-             }
+             }*/
             
             //Test 2
 
@@ -266,7 +266,7 @@ namespace Battleship_Project
                     //AI joue
                     Console.Clear();
 
-                    playerAI.AIPlaying(boardPlayer,BateauHit);
+                    BateauHit=playerAI.AIPlaying(boardPlayer,BateauHit);
                     CheckShipHit(boardPlayer, player);
                     WinAI = WinOrLose(boardPlayer);
 
