@@ -45,3 +45,16 @@ C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_5\Ba
 C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_5\Battleship_Project\obj\Debug\Battleship_Project.csproj.CoreCompileInputs.cache
 C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_5\Battleship_Project\obj\Debug\Battleship_Project.exe
 C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_5\Battleship_Project\obj\Debug\Battleship_Project.pdb
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\bin\Debug\Battleship_Project.exe.config
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\bin\Debug\Battleship_Project.exe
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\bin\Debug\Battleship_Project.pdb
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.csproj.AssemblyReference.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.csproj.SuggestedBindingRedirects.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Main.g.cs
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project_MarkupCompile.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project_MarkupCompile.lref
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Main.baml
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.g.resources
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.csproj.CoreCompileInputs.cache
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.exe
+C:\Users\Rebecca\OneDrive\Documents\ESILV\COURS\A3\S5\DORSET\C#\Git_Dépôt_6\Battleship_Project\obj\Debug\Battleship_Project.pdb

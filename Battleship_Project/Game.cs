@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Media;
+using System.Windows.Media;
+using System.Xml.Linq;
 
 
 namespace Battleship_Project
 {
     internal class Game
     {
-       
         static void Main(string[] args)
         {
-            //Rules();
 
- 
             bool statement = true;
 
             while (statement == true)
@@ -29,25 +29,22 @@ namespace Battleship_Project
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("1: PlayerVsComputer \n2: Play with a friend \n3: See the rules \n4: Play a back-up of a game against the AI\n5: Exit the game\n\n");
                 Console.Write("Enter a number : ");
-                int n = Number();
+                string n = Number();
 
                 switch (n)
                 {
-                    case 1:
+                    case "1":
                         statement = false;
                         LoadingPage();
-                        Console.WriteLine("\n Your game is ready against the computer is ready.");
-                        Console.WriteLine("Please press any key to continue.");
-                        Console.ReadKey();
                         Console.Clear();
                         PlayWithAI();
                         break;
-                    case 2:
+                    case "2":
                         statement = false;
                         Console.Clear();
                         PlayWithPlayer();
                         break;
-                    case 3:
+                    case "3":
                         statement = true;
                         LoadingPage();
                         Console.WriteLine("\n The rules are ready.");
@@ -59,14 +56,14 @@ namespace Battleship_Project
                         Console.Clear();
                         break;
 
-                    case 4:
+                    case "4":
                         //Trouver la solution pour faire la sauvegarde
                         break;
 
-                    case 5:
+                    case "5":
                         statement = false;
                         Console.Clear();
-                        Console.WriteLine("Thank you for playing with us.");
+                        Console.WriteLine("Thank you for playing with our game.");
                         Console.Out.Close();
                         break;
                     default:
@@ -144,15 +141,15 @@ namespace Battleship_Project
         /// <summary>
         /// Enter a number for the main of the game
         /// </summary>
-        /// <returns>int number</returns>
+        /// <returns>istring number</returns>
 
-        static int Number()
+        static string Number()
         {
-            int n;
+            string n;
             do
             {
-                n = Convert.ToInt32(Console.ReadLine());
-            } while (n < 1);
+                n = Convert.ToString(Console.ReadLine());
+            } while (n == "");
             return n;
         }
 
@@ -181,46 +178,68 @@ namespace Battleship_Project
         /// </summary>
         static void PlayWithAI()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("You have chosen to play against the AI !");
+            Console.ForegroundColor = ConsoleColor.White;
+
             //AI
             Board boardAI = new Board();
             string A = "AI";
             AI playerAI = new AI(boardAI);
 
-            //Joueur
+            //Player
             Board boardPlayer=new Board();
-            Console.WriteLine("Input the name of player:");
+
+            Console.Write("What is your name ? : ");
             string name = Convert.ToString(Console.ReadLine());
             Player player = new Player(boardPlayer,name);
 
             //Initialisation AI
-            string car=playerAI.AIPutShip(playerAI.Carrier.ship);
+
+            //Essayer de faire un threat
+            string car = playerAI.AIPutShip(playerAI.Carrier.ship);
             IndexShip(car, playerAI.Carrier);
-            string cru=playerAI.AIPutShip(playerAI.Cruiser.ship);
+            string cru = playerAI.AIPutShip(playerAI.Cruiser.ship);
             IndexShip(cru, playerAI.Cruiser);
-            string sub=playerAI.AIPutShip(playerAI.Submarine.ship);
+            string sub = playerAI.AIPutShip(playerAI.Submarine.ship);
             IndexShip(sub, playerAI.Submarine);
-            string des=playerAI.AIPutShip(playerAI.Destroyer.ship);
+            string des = playerAI.AIPutShip(playerAI.Destroyer.ship);
             IndexShip(des, playerAI.Destroyer);
-            string bat=playerAI.AIPutShip(playerAI.Battleship.ship);
+            string bat = playerAI.AIPutShip(playerAI.Battleship.ship);
             IndexShip(bat, playerAI.Battleship);
 
             //Initialisation Joueur
             InitializationGamePlayer(boardPlayer, player);
 
-            //Jouer 
+
+            Console.Clear();
+            Console.Write("This is your game\n");
+
+            boardPlayer.ToStringStrategy();
+            boardPlayer.ToStringAttack();
+
+            //WHO is the first to play
             Console.WriteLine("Do you want to start the game:\nTape 1: Yes, I do\nTape 2: No, I don't");
-            int choose = Number();
+
+            string choose = Number();
             bool WinAI = false;
             bool WinPlayer = false;
 
             while (!WinAI && !WinPlayer)
             {
-                if(choose == 2)
+                if(choose == "2")
                 {
                     //AI joue
+                    Console.Clear();
+
                     playerAI.AIPlaying(boardPlayer);
                     CheckShipHit(boardPlayer, player);
                     WinAI = WinOrLose(boardPlayer);
+
+                    Console.WriteLine("\n");
+                    boardPlayer.ToStringStrategy();
+                    boardPlayer.ToStringAttack();
+
                     if (WinAI)
                     {
                         Console.WriteLine(playerAI.Name + " won\n" + player.Name + " lost");
@@ -234,8 +253,11 @@ namespace Battleship_Project
                 {
                     //Joueur 2 joue
                     player.PlayerPlaying(boardAI);
+
+                    Console.Clear();
                     boardPlayer.ToStringStrategy();
                     boardPlayer.ToStringAttack();
+
                     CheckShipHitAI(boardAI, playerAI);
                     WinPlayer = WinOrLose(boardAI);
                     if (WinPlayer)
@@ -245,18 +267,14 @@ namespace Battleship_Project
                         boardAI.ToStringStrategy();
                     }
                 }
-                choose = 2;
+                choose = "2";
 
             }
-
-
         }
-
-
 
         static void PlayWithPlayer()
         {
-
+            Console.WriteLine("WELCOME TO THE GAME");
             //Joueur 1
             Board board1=new Board();
             Console.WriteLine("Input the name of player 1:");
@@ -318,44 +336,52 @@ namespace Battleship_Project
         }
 
 
-
         static void InitializationGamePlayer(Board board, Player player)
         {
-            Console.WriteLine("\n"+player.Name+":");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Hello " + player.Name + " !");
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("This is your game :\n\n");
+
             board.ToStringStrategy();
-            Console.WriteLine("Now Put your ships in your board");
+
+            board.ToStringAttack();
+
+            Console.WriteLine("To begin the game, let's put your 5 ships in the strategy board\n");
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Put your carrier");
-            Console.ResetColor();
+            Console.WriteLine("Put your carrier (size of 5 squares)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             string car=player.PlayerPutShip(player.Carrier.ship);
             IndexShip(car, player.Carrier);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Put your cruiser");
-            Console.ResetColor();
+            Console.WriteLine("Great ! Put your cruiser (size of 3 squares)");
+            Console.ForegroundColor = ConsoleColor.White;
             string cru=player.PlayerPutShip(player.Cruiser.ship);
             IndexShip(cru, player.Cruiser);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Put your submarine");
-            Console.ResetColor();
+            Console.WriteLine("Great ! Put your submarine (size of 3 squares)");
+            Console.ForegroundColor = ConsoleColor.White;
             string sub=player.PlayerPutShip(player.Submarine.ship);
             IndexShip(sub, player.Submarine);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Put your destroyer");
-            Console.ResetColor();
+            Console.WriteLine("Great ! Put your destroyer (size of 2 squares)");
+            Console.ForegroundColor = ConsoleColor.White;
             string des=player.PlayerPutShip(player.Destroyer.ship);
             IndexShip(des, player.Destroyer);
             board.ToStringStrategy();
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Put your battleship");
-            Console.ResetColor();
+            Console.WriteLine("Great ! Put your battleship (size of 4 squares)");
+            Console.ForegroundColor = ConsoleColor.White;
             string bat=player.PlayerPutShip(player.Battleship.ship);
             IndexShip(bat, player.Battleship);
             board.ToStringStrategy();
@@ -420,23 +446,33 @@ namespace Battleship_Project
         {
             if (ShipHit(boardEnemy, enemy.Carrier))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name+"'s "+enemy.Carrier.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else if (ShipHit(boardEnemy, enemy.Cruiser))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else if (ShipHit(boardEnemy, enemy.Submarine))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else if (ShipHit(boardEnemy, enemy.Destroyer))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else if (ShipHit(boardEnemy, enemy.Battleship))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else { }
 

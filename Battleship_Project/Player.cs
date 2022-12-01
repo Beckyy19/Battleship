@@ -116,7 +116,10 @@ namespace Battleship_Project
         }
         public void PlayerPlaying(Board enemy)
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("\n"+name+", you can attack: ");
+            Console.ForegroundColor = ConsoleColor.White;
+
             bool attack = false;
             int row;
             int column;
@@ -142,11 +145,13 @@ namespace Battleship_Project
             {
                 board.Attack_board[row, column] = 3;
                 enemy.Strategy_board[row, column] = 3;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(name+" hits your ship");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
-                Console.WriteLine(name+" misses your ship");
+                Console.WriteLine(name+" missed your ship");
             }
         
         }

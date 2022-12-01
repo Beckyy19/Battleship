@@ -52,7 +52,9 @@ namespace Battleship_Project
         public void ToStringStrategy()
         {
             //Sur Strategy board: 1=présence de bateau, 3=bateau qui est touché
-            Console.WriteLine("Strategy board ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Strategy board\n");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
             Console.WriteLine("  -------------------------------");
 
@@ -79,6 +81,8 @@ namespace Battleship_Project
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(" X");
+
+
                     }
                     else
                     {
@@ -93,18 +97,21 @@ namespace Battleship_Project
               
                 Console.WriteLine();
             }
-            Console.WriteLine("  -------------------------------");
+            Console.WriteLine("  -------------------------------\n\n");
         }
 
         /* Console.ResetColor();
            */
+
 
         public string ToStringAttack()
         {
             // Sur le board attack 2 représente Miss, 3 représente Hit
             bool hit;
             string H_M= "";
-            Console.WriteLine("Attack board");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Attack board\n");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("    A  B  C  D  E  F  G  H  I  J"); //Coordonnées
             Console.WriteLine("  -------------------------------");
 
@@ -132,6 +139,7 @@ namespace Battleship_Project
                         Console.BackgroundColor = ConsoleColor.Cyan;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write(" M");
+                        Console.ResetColor();
                         H_M = "Miss";
                     }
                     else
@@ -139,14 +147,16 @@ namespace Battleship_Project
                         Console.BackgroundColor = ConsoleColor.Red;
                         Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write(" H");
+                        Console.ResetColor();
                         H_M = "Hit";
                     }
-                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.Write("|");
                 }
                 Console.WriteLine();
+                Console.ResetColor();
             }
-            Console.WriteLine("  -------------------------------");
+            Console.WriteLine("  -------------------------------\n\n");
 
             return H_M;
         }
