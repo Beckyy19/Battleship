@@ -282,7 +282,7 @@ namespace Battleship_Project
                 if(choose == "2")
                 {
                     //AI joue
-                    Console.Clear();
+                    
 
                     BateauHit=playerAI.AIPlaying(boardPlayer,BateauHit);
                     CheckShipHit(boardPlayer, player);
