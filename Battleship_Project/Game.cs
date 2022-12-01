@@ -14,7 +14,6 @@ namespace Battleship_Project
     internal class Game
     {
        
-
         static void Main(string[] args)
         {
             //Rules();
@@ -27,6 +26,7 @@ namespace Battleship_Project
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("------------- Welcome to the Battleship--------------");
                 Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("1: PlayerVsComputer \n2: Play with a friend \n3: See the rules \n4: Play a back-up of a game against the AI\n5: Exit the game\n\n");
                 Console.Write("Enter a number : ");
                 int n = Number();
@@ -50,7 +50,7 @@ namespace Battleship_Project
                     case 3:
                         statement = true;
                         LoadingPage();
-                        Console.WriteLine("\n Your game is ready.");
+                        Console.WriteLine("\n The rules are ready.");
                         Console.WriteLine("Please press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
