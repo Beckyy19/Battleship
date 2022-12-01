@@ -603,25 +603,32 @@ namespace Battleship_Project
 
         static void CheckShipHit(Board boardEnemy, Player enemy)
         {
+
+            //Faire un compteur du nombre de bateau restant a faire couler + prévenir le joueur que son bateau est coulé 
             if (ShipHit(boardEnemy, enemy.Carrier))
             {
                 Console.WriteLine(enemy.Name + "'s " + enemy.Carrier.Name + " is hit");
+                Console.ReadKey();
             }
             else if (ShipHit(boardEnemy, enemy.Cruiser))
             {
                 Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
+                Console.ReadKey();
             }
             else if (ShipHit(boardEnemy, enemy.Submarine))
             {
                 Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
+                Console.ReadKey();
             }
             else if (ShipHit(boardEnemy, enemy.Destroyer))
             {
                 Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
+                Console.ReadKey();
             }
             else if (ShipHit(boardEnemy, enemy.Battleship))
             {
                 Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+                Console.ReadKey();
             }
             else { }
        
