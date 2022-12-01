@@ -8,21 +8,143 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
+
 namespace Battleship_Project
 {
     internal class Game
     {
+       
+
+        static void Main(string[] args)
+        {
+            //Rules();
+
+ 
+            bool statement = true;
+
+            while (statement == true)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("------------- Welcome to the Battleship--------------");
+                Console.ResetColor();
+                Console.WriteLine("1: PlayerVsComputer \n2: Play with a friend \n3: See the rules \n4: Play a back-up of a game against the AI\n5: Exit the game\n\n");
+                Console.Write("Enter a number : ");
+                int n = Number();
+
+                switch (n)
+                {
+                    case 1:
+                        statement = false;
+                        LoadingPage();
+                        Console.WriteLine("\n Your game is ready against the computer is ready.");
+                        Console.WriteLine("Please press any key to continue.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        PlayWithAI();
+                        break;
+                    case 2:
+                        statement = false;
+                        Console.Clear();
+                        PlayWithPlayer();
+                        break;
+                    case 3:
+                        statement = true;
+                        LoadingPage();
+                        Console.WriteLine("\n Your game is ready.");
+                        Console.WriteLine("Please press any key to continue.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        Rules();
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+                    case 4:
+                        //Trouver la solution pour faire la sauvegarde
+                        break;
+
+                    case 5:
+                        statement = false;
+                        Console.Clear();
+                        Console.WriteLine("Thank you for playing with us.");
+                        Console.Out.Close();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            //Test
+            /* Board board1 = new Board();
+             Player player1 = new Player(board1, "ALINE");
+
+             Board board2 = new Board();
+             Player player2 = new Player(board2, "REB");
+
+             string des= player1.PlayerPutShip(player1.Destroyer.ship);
+             IndexShip(des, player1.Destroyer);
+
+             string sub = player2.PlayerPutShip(player2.Destroyer.ship);
+             IndexShip(sub, player2.Destroyer);
+
+             bool WinPlayer1 = false;
+             bool WinPlayer2 = false;
+
+             while (!WinPlayer1 && !WinPlayer2)
+             {
+                 //Joueur 1 joue
+                 player1.PlayerPlaying(board2);
+                 board1.ToStringStrategy();
+                 board1.ToStringAttack();
+                 CheckShipHit(board2, player2);
+                 WinPlayer1 = WinOrLose(board2);
+                 if (WinPlayer1)
+                 {
+                     Console.WriteLine(player1.Name + " won\n"+player2.Name+" lost");
+                     Console.WriteLine(player2.Name + " board: ");
+                     board2.ToStringStrategy();
+                 }
+
+                 if (!WinPlayer1)
+                 {
+                     //Joueur 2 joue
+                     player2.PlayerPlaying(board1);
+                     board2.ToStringStrategy();
+                     board2.ToStringAttack();
+                     CheckShipHit(board1, player1);
+                     WinPlayer2 = WinOrLose(board1);
+                     if (WinPlayer2)
+                     {
+                         Console.WriteLine(player2.Name + " won\n" + player1.Name + " lost");
+                     }
+                 }
+
+             }
+            */
+
+            Console.ReadKey();
+        }
+
         /// <summary>
         /// File with all the rules in it
         /// </summary>
+        /// 
+
         #region Rules
         public static void Rules()
         {
             string rules = System.IO.File.ReadAllText(Path.GetFullPath("Rules.txt"));
-            Console.WriteLine(rules);
+            Console.WriteLine(rules + "\n\n");
+            Console.WriteLine("Enter a keyword to comeback to the main");
 
         }
         #endregion
+
+        /// <summary>
+        /// Enter a number for the main of the game
+        /// </summary>
+        /// <returns>int number</returns>
 
         static int Number()
         {
@@ -33,6 +155,30 @@ namespace Battleship_Project
             } while (n < 1);
             return n;
         }
+
+        /// <summary>
+        /// Method to do the animation of the loading page
+        /// </summary>
+
+        static void LoadingPage()
+        {
+            Console.Write("|");
+            for (int i = 0; i <= 10; ++i)
+            {
+                for (int j = 0; j < i; ++j)
+                {
+                    Console.Write("=");
+                }
+                Console.Write("> {0}0%", i);
+                Console.SetCursorPosition(1, Console.BufferHeight - 1);
+                System.Threading.Thread.Sleep(100);
+            }
+        }
+
+
+        /// <summary>
+        /// Method to play alone against the AI
+        /// </summary>
         static void PlayWithAI()
         {
             //AI
@@ -106,6 +252,8 @@ namespace Battleship_Project
 
         }
 
+
+
         static void PlayWithPlayer()
         {
 
@@ -168,6 +316,8 @@ namespace Battleship_Project
             }
 
         }
+
+
 
         static void InitializationGamePlayer(Board board, Player player)
         {
@@ -338,81 +488,6 @@ namespace Battleship_Project
             return Win;
         }
        
-        static void Main(string[] args)
-        {
-            Rules();
-
-           /* Console.WriteLine("Input a number: \n1: PlayerVsComputer \n2: Play with a friend");
-            int n = Number();
-            switch (n)
-            {
-                case 1:
-                    PlayWithAI(); 
-                    break;
-                case 2:
-                    PlayWithPlayer();
-                    break;
-                default:
-                    break;
-            }*/
-
-            //Test
-            Board board1 = new Board();
-            Player player1 = new Player(board1, "ALINE");
-
-            Board board2 = new Board();
-            Player player2 = new Player(board2, "REB");
-
-            string des= player1.PlayerPutShip(player1.Destroyer.ship);
-            IndexShip(des, player1.Destroyer);
-
-            string sub = player2.PlayerPutShip(player2.Destroyer.ship);
-            IndexShip(sub, player2.Destroyer);
-
-            bool WinPlayer1 = false;
-            bool WinPlayer2 = false;
-
-            while (!WinPlayer1 && !WinPlayer2)
-            {
-                //Joueur 1 joue
-                player1.PlayerPlaying(board2);
-                board1.ToStringStrategy();
-                board1.ToStringAttack();
-                CheckShipHit(board2, player2);
-                WinPlayer1 = WinOrLose(board2);
-                if (WinPlayer1)
-                {
-                    Console.WriteLine(player1.Name + " won\n"+player2.Name+" lost");
-                    Console.WriteLine(player2.Name + " board: ");
-                    board2.ToStringStrategy();
-                }
-
-                if (!WinPlayer1)
-                {
-                    //Joueur 2 joue
-                    player2.PlayerPlaying(board1);
-                    board2.ToStringStrategy();
-                    board2.ToStringAttack();
-                    CheckShipHit(board1, player1);
-                    WinPlayer2 = WinOrLose(board1);
-                    if (WinPlayer2)
-                    {
-                        Console.WriteLine(player2.Name + " won\n" + player1.Name + " lost");
-                    }
-                }
-               
-            }
-            
-           
-
-            
-          
-            Console.ReadKey();
-        }
-
-       
-
-
        
     }
 }
