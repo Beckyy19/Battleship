@@ -19,7 +19,7 @@ namespace Battleship_Project
         static void Main(string[] args)
         {
 
-            bool statement = true;
+           /* bool statement = true;
 
             while (statement == true)
             {
@@ -70,10 +70,10 @@ namespace Battleship_Project
                         break;
                 }
             }
-
+          */
 
             //Test
-            /* Board board1 = new Board();
+            Board board1 = new Board();
              Player player1 = new Player(board1, "ALINE");
 
              Board board2 = new Board();
@@ -118,8 +118,44 @@ namespace Battleship_Project
                  }
 
              }
-            */
+            
+            //Test 2
 
+           /* Board board1 = new Board();
+            Player player1 = new Player(board1, "ALINE");
+            string desa = player1.PlayerPutShip(player1.Carrier.ship);
+
+
+
+
+            Board boardAI = new Board();
+            AI playerAI=new AI  (boardAI);
+            bool BateauHit = false;
+            string car = playerAI.AIPutShip(playerAI.Carrier.ship);
+            IndexShip(car, playerAI.Carrier);
+            string cru = playerAI.AIPutShip(playerAI.Cruiser.ship);
+            IndexShip(cru, playerAI.Cruiser);
+            string sub = playerAI.AIPutShip(playerAI.Submarine.ship);
+            IndexShip(sub, playerAI.Submarine);
+            string des = playerAI.AIPutShip(playerAI.Destroyer.ship);
+            IndexShip(des, playerAI.Destroyer);
+            string bat = playerAI.AIPutShip(playerAI.Battleship.ship);
+            IndexShip(bat, playerAI.Battleship);
+            board1.ToStringStrategy();
+            int aaa;
+            do
+            {
+                BateauHit = playerAI.AIPlaying(board1, BateauHit);
+                boardAI.ToStringAttack();
+
+
+
+
+
+                aaa = Convert.ToInt32(Console.ReadLine());
+
+
+            }while(aaa != 0);*/
             Console.ReadKey();
         }
 
@@ -184,12 +220,10 @@ namespace Battleship_Project
 
             //AI
             Board boardAI = new Board();
-            string A = "AI";
             AI playerAI = new AI(boardAI);
 
             //Player
             Board boardPlayer=new Board();
-
             Console.Write("What is your name ? : ");
             string name = Convert.ToString(Console.ReadLine());
             Player player = new Player(boardPlayer,name);
@@ -224,7 +258,7 @@ namespace Battleship_Project
             string choose = Number();
             bool WinAI = false;
             bool WinPlayer = false;
-
+            bool BateauHit = false;
             while (!WinAI && !WinPlayer)
             {
                 if(choose == "2")
@@ -232,7 +266,7 @@ namespace Battleship_Project
                     //AI joue
                     Console.Clear();
 
-                    playerAI.AIPlaying(boardPlayer);
+                    playerAI.AIPlaying(boardPlayer,BateauHit);
                     CheckShipHit(boardPlayer, player);
                     WinAI = WinOrLose(boardPlayer);
 

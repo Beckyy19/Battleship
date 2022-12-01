@@ -151,6 +151,7 @@ namespace Battleship_Project
             }
             else
             {
+                enemy.Strategy_board[row, column] = 2;
                 Console.WriteLine(name+" missed your ship");
             }
         

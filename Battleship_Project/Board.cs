@@ -84,6 +84,12 @@ namespace Battleship_Project
 
 
                     }
+                    else if (this.strategy_board[i,j]==2)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" *");
+                    }
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.White;
