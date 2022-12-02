@@ -291,20 +291,6 @@ namespace Battleship_Project
             Console.WriteLine("Welcome back to the game !\n");
             Console.ForegroundColor = ConsoleColor.White;
 
-            Console.WriteLine("This is"+sauvegarderPlayer.Name+"'s board \n");
-
-
-            sauvegardePlayer.ToStringStrategy();
-            sauvegardePlayer.ToStringAttack();
-
-            Console.WriteLine("\nThis is IA's board \n");
-
-
-            sauvegarderIA.ToStringStrategy();
-            sauvegarderIA.ToStringAttack();
-
-
-
             
             bool WinAI = false;
             bool WinPlayer = false;
