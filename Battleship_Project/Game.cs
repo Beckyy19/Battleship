@@ -456,6 +456,23 @@ namespace Battleship_Project
                     
                 }
 
+                Counter++;
+
+                if (Counter % 3 == 0)
+                {
+                    Console.WriteLine("Do you want to save the game : y for yes or n for no ?");
+
+                    char answer = Convert.ToChar(Console.ReadLine());
+
+                    if (answer == 'y')
+                    {
+                        BackUp_Against_AI(boardPlayer, boardAI, player, choose);
+                        break;
+                    }
+
+                    Counter = 0;
+                }
+
                 if (!WinAI)
                 {
                     //Joueur 2 joue
@@ -485,23 +502,6 @@ namespace Battleship_Project
                     }
                 }
                 choose = "2";
-
-                Counter++;
-
-                if (Counter == 1)
-                {
-                    Console.WriteLine("Do you want to save the game : y for yes or n for no ?");
-
-                    char answer = Convert.ToChar(Console.ReadLine());
-
-                    if(answer == 'y')
-                    {
-                        BackUp_Against_AI(boardPlayer,boardAI, player, choose);
-                        break;
-                    }
-
-                    Counter = 0;
-                }
 
                 
 
