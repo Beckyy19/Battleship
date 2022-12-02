@@ -256,7 +256,11 @@ namespace Battleship_Project
             Console.Clear();
 
             Board sauvegardePlayer = new Board();
+            Player sauvegarderPlayer = new Player(sauvegardePlayer, texte2[0]);
+
             Board sauvegarderIA = new Board();
+            AI playerAI = new AI(sauvegarderIA);
+
             int compteur = 2;
 
             for (int i = 0; i < 10; i++)
@@ -264,6 +268,15 @@ namespace Battleship_Project
                 for (int j = 0; j < 10; j++)
                 {
                     sauvegardePlayer.Strategy_board[i, j] = Convert.ToInt32(texte2[compteur]);
+                    compteur++;
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    sauvegarderIA.Strategy_board[i, j] = Convert.ToInt32(texte2[compteur]);
                     compteur++;
                 }
             }
@@ -278,7 +291,7 @@ namespace Battleship_Project
             Console.WriteLine("Welcome back to the game !\n");
             Console.ForegroundColor = ConsoleColor.White;
 
-            Console.WriteLine("This is your board \n");
+            Console.WriteLine("This is"+sauvegarderPlayer.Name+"'s board \n");
 
 
             sauvegardePlayer.ToStringStrategy();
@@ -287,24 +300,18 @@ namespace Battleship_Project
             Console.WriteLine("\nThis is IA's board \n");
 
 
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    sauvegarderIA.Strategy_board[i, j] = Convert.ToInt32(texte2[compteur]);
-                    compteur++;
-                }
-            }
-
             sauvegarderIA.ToStringStrategy();
             sauvegarderIA.ToStringAttack();
 
 
 
-            /*
+            
             bool WinAI = false;
             bool WinPlayer = false;
             bool BateauHit = false;
+
+            string choose = texte2[1];
+
             while (!WinAI && !WinPlayer)
             {
                 if (choose == "2")
@@ -315,13 +322,13 @@ namespace Battleship_Project
                     Console.WriteLine("IA's turn : \n");
                     Console.ForegroundColor = ConsoleColor.White;
 
-                    BateauHit = playerAI.AIPlaying(boardPlayer, BateauHit);
-                    CheckShipHit(boardPlayer, player);
-                    WinAI = WinOrLose(boardPlayer);
+                    BateauHit = playerAI.AIPlaying(sauvegardePlayer, BateauHit);
+                    CheckShipHit(sauvegardePlayer, sauvegarderPlayer);
+                    WinAI = WinOrLose(sauvegardePlayer);
 
                     Console.WriteLine("\n");
-                    boardPlayer.ToStringStrategy();
-                    boardPlayer.ToStringAttack();
+                    sauvegardePlayer.ToStringStrategy();
+                    sauvegardePlayer.ToStringAttack();
                     Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
 
@@ -330,9 +337,9 @@ namespace Battleship_Project
                     if (WinAI)
                     {
                         Console.Clear();
-                        Console.WriteLine(playerAI.Name + " won\n" + player.Name + " lost");
-                        Console.WriteLine(player.Name + " board: ");
-                        boardPlayer.ToStringStrategy();
+                        Console.WriteLine(playerAI.Name + " won\n" + sauvegarderPlayer.Name + " lost");
+                        Console.WriteLine(sauvegarderPlayer.Name + " board: ");
+                        sauvegardePlayer.ToStringStrategy();
                         Console.Clear();
                         GameSetting();
                     }
@@ -344,25 +351,25 @@ namespace Battleship_Project
                     //Joueur 2 joue
 
 
-                    player.PlayerPlaying(boardAI);
+                    sauvegarderPlayer.PlayerPlaying(sauvegarderIA);
 
                     Console.Clear(); Console.ForegroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine(player.Name + "'s board : \n");
+                    Console.WriteLine(sauvegarderPlayer.Name + "'s board : \n");
                     Console.ForegroundColor = ConsoleColor.White;
-                    boardPlayer.ToStringStrategy();
-                    boardPlayer.ToStringAttack();
+                    sauvegardePlayer.ToStringStrategy();
+                    sauvegardePlayer.ToStringAttack();
 
-                    CheckShipHitAI(boardAI, playerAI);
-                    WinPlayer = WinOrLose(boardAI);
+                    CheckShipHitAI(sauvegarderIA, playerAI);
+                    WinPlayer = WinOrLose(sauvegarderIA);
                     Console.WriteLine("Press any key to continue");
                     Console.ReadKey();
 
                     if (WinPlayer)
                     {
                         Console.Clear();
-                        Console.WriteLine(player.Name + " won\n" + playerAI.Name + " lost");
+                        Console.WriteLine(sauvegarderPlayer.Name + " won\n" + playerAI.Name + " lost");
                         Console.WriteLine(playerAI.Name + " board: ");
-                        boardAI.ToStringStrategy();
+                        sauvegarderIA.ToStringStrategy();
                         Console.Clear();
                         GameSetting();
                     }
@@ -370,7 +377,7 @@ namespace Battleship_Project
                 choose = "2";
 
             }
-            */
+            
         }
 
 
