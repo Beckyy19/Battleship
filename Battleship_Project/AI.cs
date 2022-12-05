@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Battleship_Project
 {
-    internal class AI
+    public class AI
     {
 
         private Board board;
@@ -129,7 +130,9 @@ namespace Battleship_Project
                 {
                     board.Attack_board[row, column] = 3;
                     enemy.Strategy_board[row, column] = 3;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("AI hits your ship");
+                    Console.ForegroundColor = ConsoleColor.White;
                     BateauHit = true;
                 }
                 else

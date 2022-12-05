@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Battleship_Project
 {
-    internal class Player
+    public class Player
     {
         private Board board;
         private string name;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Battleship_Project
 {
-    internal class Board
+    public class Board
     {
         private int[,] strategy_board; //plateau où on place les bateaux
         private int[,] attack_board; // plateau où on attaque l'adversaire

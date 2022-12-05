@@ -11,11 +11,12 @@ using System.Media;
 using System.Windows.Media;
 using System.Xml.Linq;
 using System.Windows;
+using System.Reflection;
 
 
 namespace Battleship_Project
 {
-    internal class Game
+    public class Game
     {
         static void Main(string[] args)
         {
@@ -223,6 +224,7 @@ namespace Battleship_Project
                   for (int j = 0; j < 10; j++)
                   {
                       file.Write(boardPlayer.Strategy_board[i, j]+" ");
+                      
                   }
               }
 
@@ -230,7 +232,28 @@ namespace Battleship_Project
             {
                 for (int j = 0; j < 10; j++)
                 {
+                    file.Write(boardPlayer.Attack_board[i, j] + " ");
+
+                }
+            }
+
+
+            
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
                     file.Write(boardAI.Strategy_board[i, j] + " ");
+                   
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    file.Write(boardAI.Attack_board[i, j] + " ");
+
                 }
             }
 
@@ -272,11 +295,29 @@ namespace Battleship_Project
                 }
             }
 
+            for(int i = 0; i < 10; i++)
+            {
+                for(int j = 0; j < 10; j++)
+                {
+                    sauvegardePlayer.Attack_board[i, j] = Convert.ToInt32(texte2[compteur]);
+                    compteur++;
+                }
+            }
+
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
                     sauvegarderIA.Strategy_board[i, j] = Convert.ToInt32(texte2[compteur]);
+                    compteur++;
+                }
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    sauvegarderIA.Attack_board[i, j] = Convert.ToInt32(texte2[compteur]);
                     compteur++;
                 }
             }
@@ -295,6 +336,8 @@ namespace Battleship_Project
             bool WinAI = false;
             bool WinPlayer = false;
             bool BateauHit = false;
+
+            int Counter = 0;
 
             string choose = texte2[1];
 
@@ -361,6 +404,22 @@ namespace Battleship_Project
                     }
                 }
                 choose = "2";
+                Counter++;
+
+                if (Counter % 4 == 0)
+                {
+                    Console.WriteLine("Do you want to save the game : y for yes or n for no ?");
+
+                    char answer = Convert.ToChar(Console.ReadLine());
+
+                    if (answer == 'y')
+                    {
+                        BackUp_Against_AI(sauvegardePlayer, sauvegarderIA, sauvegarderPlayer, choose);
+                        break;
+                    }
+
+                    Counter = 0;
+                }
 
             }
             
@@ -456,23 +515,6 @@ namespace Battleship_Project
                     
                 }
 
-                Counter++;
-
-                if (Counter % 3 == 0)
-                {
-                    Console.WriteLine("Do you want to save the game : y for yes or n for no ?");
-
-                    char answer = Convert.ToChar(Console.ReadLine());
-
-                    if (answer == 'y')
-                    {
-                        BackUp_Against_AI(boardPlayer, boardAI, player, choose);
-                        break;
-                    }
-
-                    Counter = 0;
-                }
-
                 if (!WinAI)
                 {
                     //Joueur 2 joue
@@ -503,7 +545,24 @@ namespace Battleship_Project
                 }
                 choose = "2";
 
-                
+                Counter++;
+
+                if (Counter % 4 == 0)
+                {
+                    Console.WriteLine("Do you want to save the game : y for yes or n for no ?");
+
+                    char answer = Convert.ToChar(Console.ReadLine());
+
+                    if (answer == 'y')
+                    {
+                        BackUp_Against_AI(boardPlayer, boardAI, player, choose);
+                        break;
+                    }
+
+                    Counter = 0;
+                }
+
+
 
             }
         }
@@ -779,42 +838,76 @@ namespace Battleship_Project
             ship.direction = direction;
         }
 
+
+
+        static bool statement1 = false;
+        static bool statement2 = false;
+        static bool statement3 = false;
+        static bool statement4 = false;
+        static bool statement5 = false;
+
+        static int counter = 5;
         static void CheckShipHit(Board boardEnemy, Player enemy)
         {
 
             //Faire un compteur du nombre de bateau restant a faire couler + prévenir le joueur que son bateau est coulé 
-            if (ShipHit(boardEnemy, enemy.Carrier))
+            if (ShipHit(boardEnemy, enemy.Carrier) && statement1 == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Carrier.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement1 = true;
+                counter--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counter + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Cruiser))
+            else if (ShipHit(boardEnemy, enemy.Cruiser) && statement2 == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement2 = true;
+                counter--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counter + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Submarine))
+            else if (ShipHit(boardEnemy, enemy.Submarine) && statement3 == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement3 = true;
+                counter--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counter + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Destroyer))
+            else if (ShipHit(boardEnemy, enemy.Destroyer) && statement4 == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement4 = true;
+                counter--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counter + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Battleship))
+            else if (ShipHit(boardEnemy, enemy.Battleship) && statement5 == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
+                statement5 = true;
+                counter--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counter + " ships left.");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
@@ -822,40 +915,74 @@ namespace Battleship_Project
        
         }
 
+
+        static bool statement1AI = false;
+        static bool statement2AI = false;
+        static bool statement3AI = false;
+        static bool statement4AI = false;
+        static bool statement5AI = false;
+        
+        static int counterAI = 5;
         static void CheckShipHitAI(Board boardEnemy, AI enemy)
         {
-            if (ShipHit(boardEnemy, enemy.Carrier))
+
+            if (ShipHit(boardEnemy, enemy.Carrier) && statement1AI == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name+"'s "+enemy.Carrier.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement1AI = true;
+                counterAI--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counterAI + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Cruiser))
+            else if (ShipHit(boardEnemy, enemy.Cruiser) && statement2AI == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Cruiser.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement2AI = true;
+                counterAI--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counterAI + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Submarine))
+            else if (ShipHit(boardEnemy, enemy.Submarine) && statement3AI == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Submarine.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement3AI = true;
+                counterAI--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counterAI + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Destroyer))
+            else if (ShipHit(boardEnemy, enemy.Destroyer) && statement4AI == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Destroyer.Name + " is hit");
                 Console.ForegroundColor = ConsoleColor.White;
+                statement4AI = true;
+                counterAI--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counterAI + " ships left.");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
-            else if (ShipHit(boardEnemy, enemy.Battleship))
+            else if (ShipHit(boardEnemy, enemy.Battleship) && statement5AI == false)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(enemy.Name + "'s " + enemy.Battleship.Name + " is hit");
+                Console.ForegroundColor = ConsoleColor.White;
+                statement5AI = true;
+                counterAI--;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is only " + counterAI + " ships left.");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.ReadKey();
             }
