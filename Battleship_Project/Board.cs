@@ -169,7 +169,7 @@ namespace Battleship_Project
 
         
 
-        // Methode pour placer un bateau
+        // Method to place a ship
         public bool PutShip(int row, char charColumn, char direction, int[] ship)
         {
             bool done = true;

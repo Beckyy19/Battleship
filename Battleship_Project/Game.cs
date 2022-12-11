@@ -24,91 +24,6 @@ namespace Battleship_Project
 
             GameSetting();
           
-
-            //Test
-            /*Board board1 = new Board();
-             Player player1 = new Player(board1, "ALINE");
-
-             Board board2 = new Board();
-             Player player2 = new Player(board2, "REB");
-
-             string des= player1.PlayerPutShip(player1.Destroyer.ship);
-             IndexShip(des, player1.Destroyer);
-
-             string sub = player2.PlayerPutShip(player2.Destroyer.ship);
-             IndexShip(sub, player2.Destroyer);
-
-             bool WinPlayer1 = false;
-             bool WinPlayer2 = false;
-
-             while (!WinPlayer1 && !WinPlayer2)
-             {
-                 //Joueur 1 joue
-                 player1.PlayerPlaying(board2);
-                 board1.ToStringStrategy();
-                 board1.ToStringAttack();
-                 CheckShipHit(board2, player2);
-                 WinPlayer1 = WinOrLose(board2);
-                 if (WinPlayer1)
-                 {
-                     Console.WriteLine(player1.Name + " won\n"+player2.Name+" lost");
-                     Console.WriteLine(player2.Name + " board: ");
-                     board2.ToStringStrategy();
-                 }
-
-                 if (!WinPlayer1)
-                 {
-                     //Joueur 2 joue
-                     player2.PlayerPlaying(board1);
-                     board2.ToStringStrategy();
-                     board2.ToStringAttack();
-                     CheckShipHit(board1, player1);
-                     WinPlayer2 = WinOrLose(board1);
-                     if (WinPlayer2)
-                     {
-                         Console.WriteLine(player2.Name + " won\n" + player1.Name + " lost");
-                     }
-                 }
-
-             }*/
-            
-            //Test 2
-
-           /* Board board1 = new Board();
-            Player player1 = new Player(board1, "ALINE");
-            string desa = player1.PlayerPutShip(player1.Carrier.ship);
-
-
-
-
-            Board boardAI = new Board();
-            AI playerAI=new AI  (boardAI);
-            bool BateauHit = false;
-            string car = playerAI.AIPutShip(playerAI.Carrier.ship);
-            IndexShip(car, playerAI.Carrier);
-            string cru = playerAI.AIPutShip(playerAI.Cruiser.ship);
-            IndexShip(cru, playerAI.Cruiser);
-            string sub = playerAI.AIPutShip(playerAI.Submarine.ship);
-            IndexShip(sub, playerAI.Submarine);
-            string des = playerAI.AIPutShip(playerAI.Destroyer.ship);
-            IndexShip(des, playerAI.Destroyer);
-            string bat = playerAI.AIPutShip(playerAI.Battleship.ship);
-            IndexShip(bat, playerAI.Battleship);
-            board1.ToStringStrategy();
-            int aaa;
-            do
-            {
-                BateauHit = playerAI.AIPlaying(board1, BateauHit);
-                boardAI.ToStringAttack();
-
-
-
-
-
-                aaa = Convert.ToInt32(Console.ReadLine());
-
-
-            }while(aaa != 0);*/
             Console.ReadKey();
         }
 
@@ -420,7 +335,6 @@ namespace Battleship_Project
 
                     Counter = 0;
                 }
-
             }
             
         }
@@ -707,51 +621,6 @@ namespace Battleship_Project
                 }
 
             }
-
-            /*
-            while (!WinPlayer1 && !WinPlayer2)
-            {
-                //Joueur 1 joue
-                player1.PlayerPlaying(board2);
-
-                Console.Clear();
-                Console.WriteLine(player2.Name + "'s board : \n\n");
-                board1.ToStringStrategy();
-                board1.ToStringAttack();
-
-                CheckShipHit(board2, player2);
-                WinPlayer1 = WinOrLose(board2);
-                if (WinPlayer1)
-                {
-                    Console.WriteLine(player1.Name + " won\n" + player2.Name + " lost");
-                    Console.WriteLine(player2.Name + " board: ");
-                    board2.ToStringStrategy();
-                }
-
-                if (!WinPlayer1)
-                {
-                    //Joueur 2 joue
-                    player2.PlayerPlaying(board1);
-
-                    Console.Clear();
-                    Console.WriteLine(player2.Name + "'s board : \n\n");
-                    board2.ToStringStrategy();
-                    board2.ToStringAttack();
-
-                    CheckShipHit(board1, player1);
-                    WinPlayer2 = WinOrLose(board1);
-                    if (WinPlayer2)
-                    {
-                        Console.WriteLine(player2.Name + " won\n" + player1.Name + " lost");
-                        Console.WriteLine(player1.Name + " board: ");
-                        board1.ToStringStrategy();
-                    }
-                }
-            
-            }
-            */
-            
-
         }
 
 
