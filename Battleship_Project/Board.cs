@@ -113,7 +113,6 @@ namespace Battleship_Project
         public string ToStringAttack()
         {
             // Sur le board attack 2 représente Miss, 3 représente Hit
-            bool hit;
             string H_M= "";
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Attack board\n");
